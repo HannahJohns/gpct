@@ -1,0 +1,5 @@
+useDynLib("gpct")
+exportPattern("gpct|pairwise|win")
+importFrom(Rcpp, evalCpp)
+importFrom(RcppParallel, RcppParallelLibs)
+importFrom("stats", "pchisq", "pnorm", "qchisq", "qnorm", "uniroot")
