@@ -210,7 +210,8 @@ gpct <- function(x, explanatory_var, stratum=NULL, alpha=0.05, splitTies=FALSE, 
     pooled_se <- 1/sum(weights)
     pooled_se <- sqrt(pooled_se)
 
-    pooled_homogeneity_stat <- sum((statistics - pooled_L)^2/weights)
+    pooled_homogeneity_stat <- sum(weights*(statistics - pooled_L)^2)
+
     pooled_homogeneity_p <- pchisq(pooled_homogeneity_stat, length(weights)-1, lower.tail = FALSE)
 
     pooledVals <- list(pooled_L=pooled_L,
