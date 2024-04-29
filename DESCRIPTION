@@ -1,7 +1,7 @@
 Package: gpct
 Type: Package
 Title: Generalised Pairwise Comparisons for Trend
-Version: 0.0.1
+Version: 0.0.2
 Date: 2019-08-14
 Encoding: UTF-8
 Authors@R: person("Hannah","Johns", role=c("aut","cre"),email="htjohns@gmail.com",comment=c(ORCID="0000-0003-2135-0504"))

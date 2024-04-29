@@ -108,8 +108,8 @@ gpct <- function(x, explanatory_var, stratum=NULL, alpha=0.05, splitTies=FALSE, 
 
     # Get Odds/SE/etc
 
-    Pc <- sum(weights[subgroup] * Rsdt[,1])/sum(weights)
-    Pd <- sum(weights[subgroup] * Rsdt[,2])/sum(weights)
+    Pc <- sum(weights[subgroup] * Rsdt[,1])/sum(weights[subgroup])
+    Pd <- sum(weights[subgroup] * Rsdt[,2])/sum(weights[subgroup])
 
     OR <- Pc/Pd
     # SE <- 2/Pd * sqrt(sum( weights * (OR*Rsdt[,2] - Rsdt[,1] )^2 )/sum(weights)^2)
