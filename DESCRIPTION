@@ -4,7 +4,7 @@ Title: Generalised Pairwise Comparisons for Trend
 Version: 0.0.2
 Date: 2019-08-14
 Encoding: UTF-8
-Authors@R: person("Hannah","Johns", role=c("aut","cre"),email="htjohns@gmail.com",comment=c(ORCID="0000-0003-2135-0504"))
+Authors@R: person("Hannah","Johns", role=c("aut","cre"),email="dr.hannah.johns@gmail.com",comment=c(ORCID="0000-0003-2135-0504"))
 Maintainer: Hannah Johns <htjohns@gmail.com>
 Description: WRITE THIS
 License: GPL (>=3)
