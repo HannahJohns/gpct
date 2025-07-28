@@ -82,6 +82,10 @@ rbind(varying_intercept[,c("type","formula","x","y")],
 
 usethis::use_data(synthetic_data, overwrite = TRUE)
 
+
+
+
+
 # ggplot(synthetic_data,aes(x=x,y=y,color=formula)) +
 #   geom_point(alpha=0.4) +
 #   geom_smooth() +

@@ -17,35 +17,11 @@ get_pw_numeric <- function(outcome, discriminant) {
     .Call('_gpct_get_pw_numeric', PACKAGE = 'gpct', outcome, discriminant)
 }
 
-get_pw_scalar <- function(outcome, varType, comparisonDetails) {
-    .Call('_gpct_get_pw_scalar', PACKAGE = 'gpct', outcome, varType, comparisonDetails)
-}
-
 get_pw_surv <- function(outcome_exists, outcome, direction, censored_as_tie, minDiff) {
     .Call('_gpct_get_pw_surv', PACKAGE = 'gpct', outcome_exists, outcome, direction, censored_as_tie, minDiff)
 }
 
-winProb <- function(pairwise, weight, population) {
-    .Call('_gpct_winProb', PACKAGE = 'gpct', pairwise, weight, population)
-}
-
-get_winRatioStats <- function(out, pairwise, treatList, controlList, split) {
-    invisible(.Call('_gpct_get_winRatioStats', PACKAGE = 'gpct', out, pairwise, treatList, controlList, split))
-}
-
 countInconsistency <- function(x, weights, includeTies, m) {
     .Call('_gpct_countInconsistency', PACKAGE = 'gpct', x, weights, includeTies, m)
-}
-
-get_permutationTest <- function(pairwise, group, weight, tol, splitTies, nSims, shuffles) {
-    .Call('_gpct_get_permutationTest', PACKAGE = 'gpct', pairwise, group, weight, tol, splitTies, nSims, shuffles)
-}
-
-correctTimes_row <- function(times, censorPath, var, step, stepLimit) {
-    .Call('_gpct_correctTimes_row', PACKAGE = 'gpct', times, censorPath, var, step, stepLimit)
-}
-
-correctTimes <- function(out, times, censorPath) {
-    invisible(.Call('_gpct_correctTimes', PACKAGE = 'gpct', out, times, censorPath))
 }
 

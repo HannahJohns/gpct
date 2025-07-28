@@ -18,11 +18,6 @@ int indicatorFunction_numeric(int i, int j,
                               const RVector<double>& discriminant
 );
 
-int indicatorFunction_orderedScalar(int i, int j,
-                                    const RMatrix<double>& outcome,
-                                    const RVector<int>& varType,
-                                    const std::vector<std::vector<std::vector<double>>>& comparisonDetails
-                                   );
 
 int indicatorFunction_surv(int i, int j,
                            const RMatrix<int>& outcome_exists,

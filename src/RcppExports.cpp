@@ -64,19 +64,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// get_pw_scalar
-IntegerMatrix get_pw_scalar(const NumericMatrix& outcome, const IntegerVector& varType, const List& comparisonDetails);
-RcppExport SEXP _gpct_get_pw_scalar(SEXP outcomeSEXP, SEXP varTypeSEXP, SEXP comparisonDetailsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericMatrix& >::type outcome(outcomeSEXP);
-    Rcpp::traits::input_parameter< const IntegerVector& >::type varType(varTypeSEXP);
-    Rcpp::traits::input_parameter< const List& >::type comparisonDetails(comparisonDetailsSEXP);
-    rcpp_result_gen = Rcpp::wrap(get_pw_scalar(outcome, varType, comparisonDetails));
-    return rcpp_result_gen;
-END_RCPP
-}
 // get_pw_surv
 IntegerMatrix get_pw_surv(const IntegerMatrix& outcome_exists, const NumericMatrix& outcome, const NumericVector& direction, const bool censored_as_tie, const double minDiff);
 RcppExport SEXP _gpct_get_pw_surv(SEXP outcome_existsSEXP, SEXP outcomeSEXP, SEXP directionSEXP, SEXP censored_as_tieSEXP, SEXP minDiffSEXP) {
@@ -90,33 +77,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const double >::type minDiff(minDiffSEXP);
     rcpp_result_gen = Rcpp::wrap(get_pw_surv(outcome_exists, outcome, direction, censored_as_tie, minDiff));
     return rcpp_result_gen;
-END_RCPP
-}
-// winProb
-NumericMatrix winProb(const IntegerMatrix& pairwise, const NumericVector& weight, const bool population);
-RcppExport SEXP _gpct_winProb(SEXP pairwiseSEXP, SEXP weightSEXP, SEXP populationSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const IntegerMatrix& >::type pairwise(pairwiseSEXP);
-    Rcpp::traits::input_parameter< const NumericVector& >::type weight(weightSEXP);
-    Rcpp::traits::input_parameter< const bool >::type population(populationSEXP);
-    rcpp_result_gen = Rcpp::wrap(winProb(pairwise, weight, population));
-    return rcpp_result_gen;
-END_RCPP
-}
-// get_winRatioStats
-void get_winRatioStats(NumericVector& out, const IntegerMatrix& pairwise, const IntegerVector& treatList, const IntegerVector& controlList, const bool split);
-RcppExport SEXP _gpct_get_winRatioStats(SEXP outSEXP, SEXP pairwiseSEXP, SEXP treatListSEXP, SEXP controlListSEXP, SEXP splitSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector& >::type out(outSEXP);
-    Rcpp::traits::input_parameter< const IntegerMatrix& >::type pairwise(pairwiseSEXP);
-    Rcpp::traits::input_parameter< const IntegerVector& >::type treatList(treatListSEXP);
-    Rcpp::traits::input_parameter< const IntegerVector& >::type controlList(controlListSEXP);
-    Rcpp::traits::input_parameter< const bool >::type split(splitSEXP);
-    get_winRatioStats(out, pairwise, treatList, controlList, split);
-    return R_NilValue;
 END_RCPP
 }
 // countInconsistency
@@ -133,64 +93,14 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// get_permutationTest
-List get_permutationTest(const IntegerMatrix& pairwise, const NumericVector& group, const NumericVector& weight, const double tol, bool splitTies, int nSims, const IntegerMatrix& shuffles);
-RcppExport SEXP _gpct_get_permutationTest(SEXP pairwiseSEXP, SEXP groupSEXP, SEXP weightSEXP, SEXP tolSEXP, SEXP splitTiesSEXP, SEXP nSimsSEXP, SEXP shufflesSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const IntegerMatrix& >::type pairwise(pairwiseSEXP);
-    Rcpp::traits::input_parameter< const NumericVector& >::type group(groupSEXP);
-    Rcpp::traits::input_parameter< const NumericVector& >::type weight(weightSEXP);
-    Rcpp::traits::input_parameter< const double >::type tol(tolSEXP);
-    Rcpp::traits::input_parameter< bool >::type splitTies(splitTiesSEXP);
-    Rcpp::traits::input_parameter< int >::type nSims(nSimsSEXP);
-    Rcpp::traits::input_parameter< const IntegerMatrix& >::type shuffles(shufflesSEXP);
-    rcpp_result_gen = Rcpp::wrap(get_permutationTest(pairwise, group, weight, tol, splitTies, nSims, shuffles));
-    return rcpp_result_gen;
-END_RCPP
-}
-// correctTimes_row
-double correctTimes_row(const NumericVector& times, const IntegerMatrix& censorPath, int var, int step, int stepLimit);
-RcppExport SEXP _gpct_correctTimes_row(SEXP timesSEXP, SEXP censorPathSEXP, SEXP varSEXP, SEXP stepSEXP, SEXP stepLimitSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type times(timesSEXP);
-    Rcpp::traits::input_parameter< const IntegerMatrix& >::type censorPath(censorPathSEXP);
-    Rcpp::traits::input_parameter< int >::type var(varSEXP);
-    Rcpp::traits::input_parameter< int >::type step(stepSEXP);
-    Rcpp::traits::input_parameter< int >::type stepLimit(stepLimitSEXP);
-    rcpp_result_gen = Rcpp::wrap(correctTimes_row(times, censorPath, var, step, stepLimit));
-    return rcpp_result_gen;
-END_RCPP
-}
-// correctTimes
-void correctTimes(NumericMatrix& out, const NumericMatrix& times, const IntegerMatrix& censorPath);
-RcppExport SEXP _gpct_correctTimes(SEXP outSEXP, SEXP timesSEXP, SEXP censorPathSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix& >::type out(outSEXP);
-    Rcpp::traits::input_parameter< const NumericMatrix& >::type times(timesSEXP);
-    Rcpp::traits::input_parameter< const IntegerMatrix& >::type censorPath(censorPathSEXP);
-    correctTimes(out, times, censorPath);
-    return R_NilValue;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_gpct_getRsdt", (DL_FUNC) &_gpct_getRsdt, 4},
     {"_gpct_get_nullSE", (DL_FUNC) &_gpct_get_nullSE, 4},
     {"_gpct_get_Rcc", (DL_FUNC) &_gpct_get_Rcc, 4},
     {"_gpct_get_pw_numeric", (DL_FUNC) &_gpct_get_pw_numeric, 2},
-    {"_gpct_get_pw_scalar", (DL_FUNC) &_gpct_get_pw_scalar, 3},
     {"_gpct_get_pw_surv", (DL_FUNC) &_gpct_get_pw_surv, 5},
-    {"_gpct_winProb", (DL_FUNC) &_gpct_winProb, 3},
-    {"_gpct_get_winRatioStats", (DL_FUNC) &_gpct_get_winRatioStats, 5},
     {"_gpct_countInconsistency", (DL_FUNC) &_gpct_countInconsistency, 4},
-    {"_gpct_get_permutationTest", (DL_FUNC) &_gpct_get_permutationTest, 7},
-    {"_gpct_correctTimes_row", (DL_FUNC) &_gpct_correctTimes_row, 5},
-    {"_gpct_correctTimes", (DL_FUNC) &_gpct_correctTimes, 3},
     {NULL, NULL, 0}
 };
 

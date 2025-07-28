@@ -53,11 +53,8 @@
 #' Our paper will go here
 #'
 #' @export
-gpct <- function(x, explanatory_var, stratum=NULL, alpha=0.05, splitTies=FALSE, numThreads=NULL, senull_method="none", pcc_calc=FALSE)
+gpct <- function(x, explanatory_var, stratum=NULL, alpha=0.05, splitTies=FALSE, numThreads=NULL, senull_method="none")
 {
-
-
-  if(pcc_calc) warning("pcc_calc=TRUE enables an alternative method for calculating standard error that does not work in most cases. Do not use this setting.")
 
   if(is.null(numThreads)){
     numThreads <- Inf
@@ -115,23 +112,6 @@ gpct <- function(x, explanatory_var, stratum=NULL, alpha=0.05, splitTies=FALSE, 
     # SE <- 2/Pd * sqrt(sum( weights * (OR*Rsdt[,2] - Rsdt[,1] )^2 )/sum(weights)^2)
     SE <- 2/(Pd) * sqrt( sum( (weights[subgroup]/sum(weights[subgroup])) * (OR*(Rsdt[,2]) - (Rsdt[,1]) )^2 )/sum(weights[subgroup]))
 
-    if(pcc_calc){
-      Rcc <- gpct:::get_Rcc(pairwise = x$comparisons[subgroup,subgroup],
-                                         group = groupVector[subgroup],
-                                         weight = weights[subgroup],
-                                         tol = tol
-                                        )
-
-      if(splitTies){
-        Rcc[,1] <- Rcc[,1] + 0.5*Rcc[,2] + 0.25*Rcc[,3]
-      }
-
-      Pcc <- sum(weights[subgroup] * Rcc[,1])/sum(weights[subgroup])
-
-      SE_kendal <-sqrt(4*(Pcc-Pc^2)/(sum(weights[subgroup])*(1-Pc)^4))
-    } else {
-      Pcc <- SE_kendal <- NULL
-    }
 
     probwin_Y <- gpct:::winProb(x$comparisons[subgroup,subgroup],weights[subgroup],population = F)
     probwin_Y <- as.data.frame(probwin_Y)
@@ -154,18 +134,6 @@ gpct <- function(x, explanatory_var, stratum=NULL, alpha=0.05, splitTies=FALSE, 
     confint <- logOR + c(lower=1,upper=-1)*qnorm(alpha/2)*logSE
     # confint_fast <- logOR + c(lower=1,upper=-1)*qnorm(alpha/2)*logSENull_fast
 
-    if(pcc_calc){
-      logSE_kendal <- SE_kendal/OR
-      # logSENull_kendal <- SENull_kendal/ORNull
-
-      pVal_kendal <- 2*(1- pnorm(abs(logOR/logSE_kendal)))
-      confint_kendal <- logOR + c(lower=1,upper=-1)*qnorm(alpha/2)*logSE_kendal
-
-    } else {
-      confint_kendal <- pVal_kendal <- logSE_kendal <- NULL
-    }
-
-
 
     data <- {}
     for(cov in colnames(x$attributes)){
@@ -181,10 +149,6 @@ gpct <- function(x, explanatory_var, stratum=NULL, alpha=0.05, splitTies=FALSE, 
                 logSE = logSE,
                 pVal = pVal,
                 confint = confint,
-
-                logSE_kendal = logSE_kendal,
-                pVal_kendal = pVal_kendal,
-                confint_kendal = confint_kendal,
 
                 data=data,
 
